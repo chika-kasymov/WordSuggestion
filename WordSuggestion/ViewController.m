@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "WordPredictor.h"
 
 @interface ViewController () <UITextViewDelegate>
 
@@ -15,7 +16,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *suggestedWordsLabel;
 @property (nonatomic, weak) IBOutlet UILabel *lookupTimeLabel;
 
-@property (nonatomic, strong) NSRegularExpression *regex;
+@property (nonatomic, strong) WordPredictor *wordPredictor;
 
 @end
 
@@ -24,33 +25,50 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    NSError *error;
-    self.regex = [[NSRegularExpression alloc] initWithPattern:@"\\p{L}[\\p{L}']*(?:-\\p{L}+)*"
-                                                      options:NSRegularExpressionCaseInsensitive
-                                                        error:&error];
+    self.wordPredictor = [WordPredictor new];
 
-    if (error) {
-        NSLog(@"Invalid regex: %@", error.localizedDescription);
-    }
+    self.spinner.hidden = true;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidLoad];
 
+    [self loadNgramDataIfNeeded];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+
+    self.suggestedWordsLabel.preferredMaxLayoutWidth = self.suggestedWordsLabel.frame.size.width;
+}
+
+#pragma mark - Methods
+
+- (void)loadNgramDataIfNeeded {
+    if (!self.wordPredictor.needLoadNgramData) {
+        return;
+    }
+
     [self setStateLoading:true];
 
     __weak ViewController *weakSelf = self;
 
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // load data
+    self.wordPredictor.onLoadCompletion = ^{
+        NSLog(@"Finished parsing ngrams data.");
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf setStateLoading:false];
-        });
-    });
+        [weakSelf setStateLoading:false];
+    };
+
+    NSString *ngram1Path = [[NSBundle mainBundle] pathForResource:@"ngram1" ofType:@"csv"];
+    NSString *ngram2Path = [[NSBundle mainBundle] pathForResource:@"ngram2" ofType:@"csv"];
+    NSString *ngram3Path = [[NSBundle mainBundle] pathForResource:@"ngram3" ofType:@"csv"];
+    NSString *ngram4Path = [[NSBundle mainBundle] pathForResource:@"ngram4" ofType:@"csv"];
+
+    [self.wordPredictor loadNgram1:ngram1Path
+                            ngram2:ngram2Path
+                            ngram3:ngram3Path
+                            ngram4:ngram4Path];
 }
-
-#pragma mark - Methods
 
 - (void)setStateLoading:(BOOL)loading {
     self.textView.userInteractionEnabled = !loading;
@@ -68,24 +86,20 @@
 
 - (void)textViewDidChange:(UITextView *)textView {
     NSString *inputText = textView.text;
-    if (!inputText) {
+    if (!inputText || inputText.length == 0) {
         return;
     }
 
-    NSMutableString *textToLookup = @"".mutableCopy;
+    __weak ViewController *weakSelf = self;
 
-    NSArray<NSTextCheckingResult *> *results = [self.regex matchesInString:inputText options:NSMatchingReportProgress range:NSMakeRange(0, inputText.length)];
-    int start = MAX(((int)results.count) - 4, 0);
-    for (int i = start; i < results.count; i++) {
-        NSTextCheckingResult *result = results[i];
+    NSDate *methodStart = [NSDate date];
+    [self.wordPredictor suggestWordsForInput:inputText completion:^(NSArray<NSString *> *wordSuggestions) {
+        NSDate *methodFinish = [NSDate date];
+        NSTimeInterval executionTime = [methodFinish timeIntervalSinceDate:methodStart];
 
-        NSString *separator = i == start ? @"" : @" ";
-        NSString *parsedText = [inputText substringWithRange:result.range];
-        [textToLookup appendFormat:@"%@%@", separator, parsedText];
-    }
-
-    NSLog(@"Suggest words for input: %@", textToLookup);
+        weakSelf.suggestedWordsLabel.text = [wordSuggestions componentsJoinedByString:@"\n"];
+        weakSelf.lookupTimeLabel.text = [NSString stringWithFormat:@"%.5f seconds", executionTime];
+    }];
 }
-
 
 @end

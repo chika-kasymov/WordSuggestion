@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Xcode 9.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="Ngram1" representedClassName="Ngram1" syncable="YES" codeGenerationType="class">
+        <attribute name="freq" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Ngram2" representedClassName="Ngram2" syncable="YES" codeGenerationType="class">
+        <attribute name="freq" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Ngram3" representedClassName="Ngram3" syncable="YES" codeGenerationType="class">
+        <attribute name="freq" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Ngram4" representedClassName="Ngram4" syncable="YES" codeGenerationType="class">
+        <attribute name="freq" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="x" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="y" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Ngram1" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="Ngram2" positionX="-54" positionY="18" width="128" height="90"/>
+        <element name="Ngram3" positionX="-36" positionY="27" width="128" height="90"/>
+        <element name="Ngram4" positionX="-18" positionY="36" width="128" height="90"/>
+    </elements>
 </model>

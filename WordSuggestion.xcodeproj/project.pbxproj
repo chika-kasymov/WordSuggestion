@@ -14,6 +14,13 @@
 		C7505820201EE263003A328B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C750581F201EE263003A328B /* Assets.xcassets */; };
 		C7505823201EE263003A328B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7505821201EE263003A328B /* LaunchScreen.storyboard */; };
 		C7505826201EE263003A328B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C7505825201EE263003A328B /* main.m */; };
+		C750582F201F552F003A328B /* WordPredictor.m in Sources */ = {isa = PBXBuildFile; fileRef = C750582E201F552F003A328B /* WordPredictor.m */; };
+		C7505834201F6598003A328B /* ngram1.csv in Resources */ = {isa = PBXBuildFile; fileRef = C7505830201F6597003A328B /* ngram1.csv */; };
+		C7505835201F6598003A328B /* ngram2.csv in Resources */ = {isa = PBXBuildFile; fileRef = C7505831201F6598003A328B /* ngram2.csv */; };
+		C7505836201F6598003A328B /* ngram3.csv in Resources */ = {isa = PBXBuildFile; fileRef = C7505832201F6598003A328B /* ngram3.csv */; };
+		C7505837201F6598003A328B /* ngram4.csv in Resources */ = {isa = PBXBuildFile; fileRef = C7505833201F6598003A328B /* ngram4.csv */; };
+		C750583F20205EF7003A328B /* FileReader.m in Sources */ = {isa = PBXBuildFile; fileRef = C750583E20205EF7003A328B /* FileReader.m */; };
+		C7505842202076A6003A328B /* Ngram.m in Sources */ = {isa = PBXBuildFile; fileRef = C7505841202076A6003A328B /* Ngram.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +35,16 @@
 		C7505822201EE263003A328B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7505824201EE263003A328B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7505825201EE263003A328B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C750582D201F552F003A328B /* WordPredictor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WordPredictor.h; sourceTree = "<group>"; };
+		C750582E201F552F003A328B /* WordPredictor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WordPredictor.m; sourceTree = "<group>"; };
+		C7505830201F6597003A328B /* ngram1.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ngram1.csv; sourceTree = "<group>"; };
+		C7505831201F6598003A328B /* ngram2.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ngram2.csv; sourceTree = "<group>"; };
+		C7505832201F6598003A328B /* ngram3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ngram3.csv; sourceTree = "<group>"; };
+		C7505833201F6598003A328B /* ngram4.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ngram4.csv; sourceTree = "<group>"; };
+		C750583D20205EF6003A328B /* FileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileReader.h; sourceTree = "<group>"; };
+		C750583E20205EF7003A328B /* FileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileReader.m; sourceTree = "<group>"; };
+		C7505840202076A6003A328B /* Ngram.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Ngram.h; sourceTree = "<group>"; };
+		C7505841202076A6003A328B /* Ngram.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ngram.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,14 +81,40 @@
 				C7505814201EE263003A328B /* AppDelegate.m */,
 				C7505816201EE263003A328B /* ViewController.h */,
 				C7505817201EE263003A328B /* ViewController.m */,
+				C750582C201F5513003A328B /* Models */,
 				C7505819201EE263003A328B /* Main.storyboard */,
 				C750581F201EE263003A328B /* Assets.xcassets */,
 				C7505821201EE263003A328B /* LaunchScreen.storyboard */,
 				C7505824201EE263003A328B /* Info.plist */,
 				C7505825201EE263003A328B /* main.m */,
 				C750581C201EE263003A328B /* WordSuggestion.xcdatamodeld */,
+				C7505838201F65A2003A328B /* Resources */,
 			);
 			path = WordSuggestion;
+			sourceTree = "<group>";
+		};
+		C750582C201F5513003A328B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C750582D201F552F003A328B /* WordPredictor.h */,
+				C750582E201F552F003A328B /* WordPredictor.m */,
+				C750583D20205EF6003A328B /* FileReader.h */,
+				C750583E20205EF7003A328B /* FileReader.m */,
+				C7505840202076A6003A328B /* Ngram.h */,
+				C7505841202076A6003A328B /* Ngram.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C7505838201F65A2003A328B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C7505830201F6597003A328B /* ngram1.csv */,
+				C7505831201F6598003A328B /* ngram2.csv */,
+				C7505832201F6598003A328B /* ngram3.csv */,
+				C7505833201F6598003A328B /* ngram4.csv */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,6 +177,10 @@
 			files = (
 				C7505823201EE263003A328B /* LaunchScreen.storyboard in Resources */,
 				C7505820201EE263003A328B /* Assets.xcassets in Resources */,
+				C7505836201F6598003A328B /* ngram3.csv in Resources */,
+				C7505835201F6598003A328B /* ngram2.csv in Resources */,
+				C7505837201F6598003A328B /* ngram4.csv in Resources */,
+				C7505834201F6598003A328B /* ngram1.csv in Resources */,
 				C750581B201EE263003A328B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,9 +193,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7505818201EE263003A328B /* ViewController.m in Sources */,
+				C7505842202076A6003A328B /* Ngram.m in Sources */,
 				C7505815201EE263003A328B /* AppDelegate.m in Sources */,
 				C7505826201EE263003A328B /* main.m in Sources */,
 				C750581E201EE263003A328B /* WordSuggestion.xcdatamodeld in Sources */,
+				C750583F20205EF7003A328B /* FileReader.m in Sources */,
+				C750582F201F552F003A328B /* WordPredictor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
